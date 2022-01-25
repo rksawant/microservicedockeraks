@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{1A01CB29-163E-42B7-84EC-C32A83AEEE42}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{170C8D90-768C-4BFA-9205-83DD77CF40A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopping.Web", "Shopping.Web\Shopping.Web.csproj", "{FE697DE1-FD17-4FCA-A5A2-7244B37A4169}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE697DE1-FD17-4FCA-A5A2-7244B37A4169}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE697DE1-FD17-4FCA-A5A2-7244B37A4169}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE697DE1-FD17-4FCA-A5A2-7244B37A4169}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE697DE1-FD17-4FCA-A5A2-7244B37A4169}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FE697DE1-FD17-4FCA-A5A2-7244B37A4169} = {1A01CB29-163E-42B7-84EC-C32A83AEEE42}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C1B0ACB9-2ED0-422D-B1A2-B34EB5C7DE4E}
+	EndGlobalSection
+EndGlobal
