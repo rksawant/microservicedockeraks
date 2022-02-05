@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  shopping.web:
+    image: ${DOCKER_REGISTRY-}shoppingweb
+    build:
+      context: .
+      dockerfile: Shopping.Web/Dockerfile
+
+  shopping.api:
+    image: ${DOCKER_REGISTRY-}shoppingapi
+    build:
+      context: .
+      dockerfile: Shopping.API/Dockerfile
+

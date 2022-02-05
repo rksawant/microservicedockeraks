@@ -1,5 +1,14 @@
 var builder = WebApplication.CreateBuilder(args);
 
+
+
+builder.Services.AddHttpClient("ShoppingAPIClient", client =>
+{
+    //client.BaseAddress = new Uri("https://localhost:7273/"); // Shopping.API url
+    //client.BaseAddress = new Uri("http://host.docker.internal:49157/");
+    client.BaseAddress = new Uri(builder.Configuration["ShoppingAPIUrl"]);
+    //client.BaseAddress = new Uri("http://con-shoppingapi:80");
+});
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -13,7 +22,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();

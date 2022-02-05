@@ -2,7 +2,7 @@
 
 namespace Shopping.Web.Data
 {
-    public static class ProductContext
+    public class ProductContext
     {
         public static readonly IEnumerable<Product> products = new List<Product>()
             {
