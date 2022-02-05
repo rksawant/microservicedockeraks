@@ -3,7 +3,13 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- main
+    branches:
+      include:
+      - main
+    paths:
+      include:
+      - Shopping/Shopping.Client/*
+      - aks/shoppingclient.yaml
 
 resources:
 - repo: self
@@ -11,21 +17,21 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '65abc3a8-f7bd-4a5f-8a6b-e8cae6d66b51'
-  imageRepository: 'shoppingapi'
-  containerRegistry: 'rsshoppingacr.azurecr.io'
-  dockerfilePath: '**/Dockerfile'
+  dockerRegistryServiceConnection: 'e2bd5050-0b04-449c-8cd9-9367bbf7b47e'
+  imageRepository: 'shoppingclient'
+  containerRegistry: 'shoppingacr.azurecr.io'
+  dockerfilePath: 'Shopping/Shopping.Client/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'rsshoppingacr2114da31-auth'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
-
+  
 
 stages:
 - stage: Build
   displayName: Build stage
-  jobs:
+  jobs:  
   - job: Build
     displayName: Build
     pool:
@@ -41,9 +47,9 @@ stages:
         buildContext: $(Build.SourcesDirectory)/Shopping
         tags: |
           $(tag)
-
-    - upload: manifests
-      artifact: manifests
+          
+    - upload: aks
+      artifact: aks
 
 - stage: Deploy
   displayName: Deploy stage
@@ -54,7 +60,7 @@ stages:
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
-    environment: 'rksawantmicroservicedockeraks.default'
+    environment: 'aspnetrunrundevops.default'
     strategy:
       runOnce:
         deploy:
@@ -65,15 +71,14 @@ stages:
               action: createSecret
               secretName: $(imagePullSecret)
               dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
-
+              
           - task: KubernetesManifest@0
             displayName: Deploy to Kubernetes cluster
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/manifests/shoppingapi.yaml
+                $(Pipeline.Workspace)/aks/shoppingclient.yaml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
                 $(containerRegistry)/$(imageRepository):$(tag)
-
