@@ -17,9 +17,9 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'e2bd5050-0b04-449c-8cd9-9367bbf7b47e'
+  dockerRegistryServiceConnection: '65abc3a8-f7bd-4a5f-8a6b-e8cae6d66b51'
   imageRepository: 'shoppingapi'
-  containerRegistry: 'shoppingacr.azurecr.io'
+  containerRegistry: 'rsshoppingacr.azurecr.io'
   dockerfilePath: 'Shopping/Shopping.API/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'rsshoppingacr2114da31-auth'
@@ -60,7 +60,7 @@ stages:
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
-    environment: 'aspnetrunrundevops.default'
+    environment: 'rksawantmicroservicedockeraks.default'
     strategy:
       runOnce:
         deploy:
